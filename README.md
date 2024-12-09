@@ -15,4 +15,17 @@ npm cache clean --force
 
 # References
 
-Icon draw: <https://canva.com>
+Github:
+<https://github.com/jonasbbernardi/az-devops-pipeline-dashboard>
+
+Extension manifest:
+<https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest>
+
+Javascript api documentation:
+<https://learn.microsoft.com/en-us/javascript/api/azure-devops-extension-api>
+
+Azure devops ui guide:
+<https://developer.microsoft.com/en-us/azure-devops/>
+
+Icon draw:
+<https://canva.com>
