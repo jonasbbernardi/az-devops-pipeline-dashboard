@@ -1,15 +1,31 @@
 {
   "name": "az-devops-pipeline-dashboard",
-  "version": "0.0.2",
+  "version": "0.0.18",
   "description": "Dashboard for Azure DevOps Pipelines.",
-  "main": "index.html",
+  "author": "jonasbbernardi",
+  "license": "MIT",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack",
+    "start": "webpack serve --mode development --open"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "azure-devops-extension-sdk": "^4.0.2"
+    "azure-devops-extension-api": "^4.246.0",
+    "azure-devops-extension-sdk": "^4.0.2",
+    "azure-devops-ui": "^2.246.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "@types/react": "~16.8.2",
+    "@types/react-dom": "~16.8.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
   }
 }
