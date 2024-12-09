@@ -1,0 +1,5 @@
+
+steps:
+  - bash: |
+      echo "testing"
+    displayName: First echo
