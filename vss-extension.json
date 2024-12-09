@@ -1,60 +1,95 @@
 {
-    "manifestVersion": 1,
-    "id": "az-devops-pipeline-dashboard",
-    "version": "0.0.2",
-    "name": "Pipeline Dashboard for Azure Devops (for yml users)",
-    "publisher": "JonasBBernardi",
-    "galleryFlags": [
-        "Public",
-        "Preview"
-    ],
-    "categories": ["Azure Pipelines"],
-    "targets": [
-        {"id": "Microsoft.VisualStudio.Services"}
-    ],
-    "demands": [ "api-version/3.0" ],
-    "icons": {
-        "default": "assets/icon.png"
+  "manifestVersion": 1,
+  "id": "az-devops-pipeline-dashboard",
+  "version": "0.0.18",
+  "name": "Pipeline Dashboard for Azure Devops (for yml users)",
+  "publisher": "JonasBBernardi",
+  "galleryFlags": [
+    "Public",
+    "Preview"
+  ],
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "demands": [
+    "api-version/3.0"
+  ],
+  "icons": {
+    "default": "assets/icon.png"
+  },
+  "iconName": "ProductionFloorManagement",
+  "files": [
+    {
+      "path": "index.html",
+      "addressable": true,
+      "contentType": "text/html"
     },
-    "files": [
-        { "path": "index.html", "addressable": true, "contentType": "text/html" },
-        { "path": "assets/index.js", "addressable": true, "contentType": "text/javascript" },
-        { "path": "assets/index.css", "addressable": true, "contentType": "text/css" }
-    ],
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/jonasbbernardi/az-devops-pipeline-dashboard"
+    {
+      "path": "dist/index.js",
+      "addressable": true,
+      "contentType": "text/javascript"
     },
-    "content": {
-        "details": {"path": "README.md"},
-        "license": {"path": "LICENSE"}
+    {
+      "path": "assets/index.css",
+      "addressable": true,
+      "contentType": "text/css"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/jonasbbernardi/az-devops-pipeline-dashboard"
+  },
+  "content": {
+    "details": {
+      "path": "README.md"
     },
-    "contributions": [
-        {
-            "id": "JonasB.AzDevOpsPipelineDashboard",
-            "type": "ms.vss-web.hub",
-            "description": "Add link to a dashboard to manage pipelines as releases menu do.",
-            "targets": [
-                "ms.vss-work-web.work-hub-group"
-            ],
-            "properties": {
-                "name": "Pipelines Dashboard",
-                "order": 99,
-                "uri": "index.html"
-            }
-        }
-    ],
-    "scopes": [
-        "vso.build",
-        "vso.build_execute",
-        "vso.code",
-        "vso.code_status",
-        "vso.graph",
-        "vso.hooks",
-        "vso.packaging",
-        "vso.pipelineresources_use",
-        "vso.project",
-        "vso.serviceendpoint"
-    ],
-    "tags": ["pipeline", "pipelines", "dashboard", "release", "ci/cd", "ci", "cd", "view", "visualize", "run", "runs"]
+    "license": {
+      "path": "LICENSE"
+    }
+  },
+  "contributions": [
+    {
+      "id": "JonasB.AzDevOpsPipelineDashboard",
+      "type": "ms.vss-web.hub",
+      "description": "Add link to a dashboard to manage pipelines as releases menu do.",
+      "targets": [
+        "ms.vss-build-web.build-release-hub-group"
+      ],
+      "properties": {
+        "name": "Pipelines Dashboard",
+        "order": 90,
+        "uri": "index.html"
+      }
+    }
+  ],
+  "scopes": [
+    "vso.build",
+    "vso.build_execute",
+    "vso.code",
+    "vso.code_status",
+    "vso.graph",
+    "vso.hooks",
+    "vso.packaging",
+    "vso.pipelineresources_use",
+    "vso.project",
+    "vso.serviceendpoint"
+  ],
+  "tags": [
+    "pipeline",
+    "pipelines",
+    "dashboard",
+    "release",
+    "ci/cd",
+    "ci",
+    "cd",
+    "view",
+    "visualize",
+    "run",
+    "runs"
+  ]
 }
