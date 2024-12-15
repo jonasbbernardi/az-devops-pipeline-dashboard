@@ -1,20 +1,28 @@
 rm -rf dist/*
 
-npm run build
-
 npm version patch --no-git-tag-version
 
-VERSION=$(node -e "let a=require('./package.json').version;console.log(a)")
-SCRIPT_FILE="deploy.js"
-touch $SCRIPT_FILE
-echo "var fs=require('fs')"                         > $SCRIPT_FILE
-echo "const vssExt=require('./vss-extension.json')" >> $SCRIPT_FILE
-echo "vssExt.version='$VERSION'"                    >> $SCRIPT_FILE
-echo "const vssExtStr=JSON.stringify(vssExt)"       >> $SCRIPT_FILE
-echo "fs.writeFile('vss-extension.json',vssExtStr,'utf-8',()=>{})" >> $SCRIPT_FILE
-node $SCRIPT_FILE
-rm $SCRIPT_FILE
+npm run build
+
+npx tfx-cli extension publish \
+  --publisher JonasBBernardi \
+  --manifest-js './extension.config.js' \
+  --token $AZDO_PERSONAL_ACCESS_TOKEN \
+  --no-wait-validation
+
+PUBLISHED_AT=$(date '+%T.%3N')
+echo "Published at: $PUBLISHED_AT"
+
+# Verify status
+VERSION=$(node -e "let a=require('./package.json').version;console.log(a)");
+tfx extension isvalid \
+  --publisher JonasBBernardi \
+  --extension-id az-devops-pipeline-dashboard \
+  --version $VERSION \
+  --service-url https://marketplace.visualstudio.com/ \
+  --token $AZDO_PERSONAL_ACCESS_TOKEN
 
 rm JonasBBernardi.az-devops-pipeline-dashboard-*.vsix
 
-npx tfx-cli extension create
+# Create to deploy manual
+# npx tfx-cli extension create --manifest-js './extension.config.js'

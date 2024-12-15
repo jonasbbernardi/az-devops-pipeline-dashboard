@@ -1,7 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = false;
 const path = require('path');
 
-module.exports = {
+const config = {
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
   mode: "production",
@@ -13,21 +15,34 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       }
-    ],
+    ]
   },
   plugins: [
-      new HtmlWebpackPlugin({
-          template: './index.html'
-      })
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    }),
+    new MiniCssExtractPlugin(),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'assets'),
+    },
+    compress: true,
+    port: 9000,
   },
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
   }
 };
+config.plugins = config.plugins.concat(devMode ? [] : [new MiniCssExtractPlugin()]);
+module.exports = config;

@@ -8,10 +8,10 @@ steps:
       RemoveDotFiles: true
 
   - task: NodeTool@0
-    displayName: 'using Node 22'
+    displayName: 'using Node 20'
     inputs:
       versionSource: 'spec'
-      versionSpec: '22'
+      versionSpec: '20'
       checkLatest: true
 
   - task: Npm@1
@@ -35,25 +35,9 @@ steps:
       customCommand: 'version patch --no-git-tag-version'
 
   - bash: |
-      VERSION=$(node -e "let a=require('./package.json').version;console.log(a)")
-      SCRIPT_FILE="deploy.js"
-      touch $SCRIPT_FILE
-      echo "var fs=require('fs')"                         > $SCRIPT_FILE
-      echo "const vssExt=require('./vss-extension.json')" >> $SCRIPT_FILE
-      echo "vssExt.version='$VERSION'"                    >> $SCRIPT_FILE
-      echo "const vssExtStr=JSON.stringify(vssExt)"       >> $SCRIPT_FILE
-      echo "fs.writeFile('vss-extension.json',vssExtStr,'utf-8',()=>{})" >> $SCRIPT_FILE
-      node $SCRIPT_FILE
-      rm $SCRIPT_FILE
-    displayName: 'extension versioning'
-
-  - task: DeleteFiles@1
-    displayName: 'removing extension file'
-    inputs:
-      SourceFolder: '$(Build.SourcesDirectory)'
-      Contents: 'JonasBBernardi.az-devops-pipeline-dashboard-*.vsix'
-      RemoveDotFiles: true
-
-  - bash: |
-      npx tfx-cli extension create
+      npx tfx-cli extension publish \
+        --publisher JonasBBernardi \
+        --manifest-js './extension.config.js' \
+        --token $AZDO_PERSONAL_ACCESS_TOKEN \
+        --no-wait-validation
     displayName: 'create extension'
