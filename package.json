@@ -1,6 +1,6 @@
 {
   "name": "az-devops-pipeline-dashboard",
-  "version": "0.0.29",
+  "version": "0.0.34",
   "description": "Dashboard for Azure DevOps Pipelines.",
   "author": "jonasbbernardi",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "azure-devops-extension-api": "^4.246.0",
     "azure-devops-extension-sdk": "^4.0.2",
     "azure-devops-ui": "^2.246.0",
+    "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.9.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
