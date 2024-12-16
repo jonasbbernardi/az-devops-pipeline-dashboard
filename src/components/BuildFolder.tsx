@@ -5,7 +5,7 @@ import { Tree, renderExpandableTreeCell } from "azure-devops-ui/TreeEx";
 import { ISimpleTableCell } from 'azure-devops-ui/Table';
 import { ITreeItem, ITreeItemEx, TreeItemProvider } from 'azure-devops-ui/Utilities/TreeItemProvider';
 import { ProjectContext } from '../context/ProjectContext';
-import { listFoldersAndBuildDefinitions } from '../api/build';
+import { listFolders } from '../api/build';
 
 interface BuildFolderProps {
     folder: Folder
@@ -30,9 +30,8 @@ export const BuildFolder: FunctionComponent<BuildFolderProps> = (props: BuildFol
 
   const getItemProvider = async () => {
     const rootItems: Array<ITreeItem<Folder>> = [];
-    const list = await listFoldersAndBuildDefinitions(project.id);
-    for(const item of list.folders) {
-      await listFoldersAndBuildDefinitions(project.id, item.path);
+    const folders = await listFolders(project.id);
+    for(const item of folders) {
       rootItems.push({
         data: {...item},
         childItems: [],

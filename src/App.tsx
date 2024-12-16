@@ -19,7 +19,6 @@ export const App: FunctionComponent = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [project, setProject] = useState(Project);
 
-
     useEffect(() => {
       setProject(Project);
     }, [])
@@ -31,15 +30,15 @@ export const App: FunctionComponent = () => {
     const containerStyle = { height: "500px", width: "600px", display: "flex" };
 
     const _renderNearContent = () => (
-      <Page className="release-hub-left flex-column">
-        <BuildFolders/>
-      </Page>
-    )
+        <Page className="release-hub-left flex-column">
+          <BuildFolders/>
+        </Page>
+      )
     const _renderFarContent = () => (
-      <Page className="release-hub-left flex-column">
-        Content
-      </Page>
-    )
+        <Page className="release-hub-left flex-column">
+          Content
+        </Page>
+      )
 
     return (
         <div style={containerStyle}>

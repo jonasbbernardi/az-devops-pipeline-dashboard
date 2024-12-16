@@ -13,8 +13,11 @@ async function getProject() {
 
 async function projectInit() {
   await SDK.init();
+  console.log('Sdk intialized');
   await SDK.ready();
+  console.log('Sdk ready');
   await getProject();
+  console.log('Project loaded');
 }
 
 projectInit();

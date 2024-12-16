@@ -34,7 +34,7 @@ export const BuildFolders: FunctionComponent = () => {
       <Button
         primary={true}
         iconProps={{
-          iconName: "Refresh",
+          iconName: "refresh",
           tooltipProps: {text: "Atualizar Lista"}
         }}
         onClick={() => listBuilds()}
