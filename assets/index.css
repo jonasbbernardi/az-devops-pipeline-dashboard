@@ -3,3 +3,23 @@ body {
     margin: 10px;    
     font-family: "Segoe UI VSS (Regular)","-apple-system",BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
+/*
+  Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fabric-assets-license
+*/
+@font-face {
+    font-family: 'FabricMDL2Icons';
+    src: url('./fabric-icons-782de987.woff') format('woff');
+  }
+  
+  .ms-Icon {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-family: 'FabricMDL2Icons';
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+  }
+  
+  .ms-Icon--Refresh:before { content: "\E72C"; }
+  
