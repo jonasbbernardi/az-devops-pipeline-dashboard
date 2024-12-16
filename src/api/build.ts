@@ -1,29 +1,47 @@
 import { getClient } from "azure-devops-extension-api";
 import { BuildRestClient, Folder } from "azure-devops-extension-api/Build";
+import { CommonServiceIds, IProjectPageService } from "azure-devops-extension-api";
+import * as SDK from "azure-devops-extension-sdk";
 
-export const listBuildDefinitions = async (
-  project_id: string,
+async function getProject() {
+  const projectService = await SDK.getService<IProjectPageService>(CommonServiceIds.ProjectPageService);
+  const project = await projectService.getProject();
+  if (!project) {
+    console.error("Nenhum projeto encontrado no contexto.");
+  }
+  console.log('Project loaded');
+  return project;
+}
+
+export const listBuilds = async (
   path: string = '\\'
 ) => {
   try {
+    const project = await getProject();
     const buildClient = getClient(BuildRestClient);
     const definitions = await buildClient.getDefinitions(
-      project_id, null, null, null, null, null, null, null, null, path
+      project.id, null, null, null, null, null, null, null, null, path
     );
-    console.log(definitions);
-    return definitions;
+    const builds = await Promise.all(
+      definitions.map(async d => {
+        const latestBuild = await buildClient.getLatestBuild(project.id, `${d.id}`);
+        return { ...d, latestBuild };
+      })
+    );
+    console.log(builds);
+    return builds;
   } catch (error) {
       console.error("Erro ao listar as builds:", error);
   }
 };
 
 export const listFolders = async (
-  project_id: string,
   path: string = '\\'
 ) => {
   try {
+    const project = await getProject();
     const buildClient = getClient(BuildRestClient);
-    const folders = await buildClient.getFolders(project_id,path);
+    const folders = await buildClient.getFolders(project.id,path);
     console.log(folders);
     return folders.filter((folder: Folder) => {
       if(folder.path == path) return false;

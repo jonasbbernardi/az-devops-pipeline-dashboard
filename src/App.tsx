@@ -10,14 +10,14 @@ import {
   SplitterElementPosition,
   Splitter
 } from "azure-devops-ui/Splitter";
-import {ProjectContext} from './context/ProjectContext';
+import {SdkContext} from './context/SdkContext';
 import { Page } from "azure-devops-ui/Page";
 import { ObservableValue } from 'azure-devops-ui/Core/Observable';
 import { BuildFolders } from "./components/BuildFolders";
 
 export const App: FunctionComponent = () => {
     const collapsedValue = new ObservableValue(false);
-    const project = useContext(ProjectContext);
+    const sdk = useContext(SdkContext);
     const [collapsed, setCollapsed] = useState(false);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export const App: FunctionComponent = () => {
 
     return (
         <div style={containerStyle}>
-            <ProjectContext.Provider value={project}>
+            <SdkContext.Provider value={sdk}>
               <Splitter
                   collapsed={collapsed}
                   fixedElement={SplitterElementPosition.Near}
@@ -52,7 +52,7 @@ export const App: FunctionComponent = () => {
                   onRenderNearElement={_renderNearContent}
                   onRenderFarElement={_renderFarContent}
               />
-            </ProjectContext.Provider>
+            </SdkContext.Provider>
         </div>
     )
 }
