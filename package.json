@@ -1,6 +1,6 @@
 {
   "name": "az-devops-pipeline-dashboard",
-  "version": "0.0.27",
+  "version": "0.0.29",
   "description": "Dashboard for Azure DevOps Pipelines.",
   "author": "jonasbbernardi",
   "license": "MIT",

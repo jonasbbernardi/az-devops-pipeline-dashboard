@@ -41,11 +41,13 @@ export const BuildItem: FunctionComponent<BuildItemProps> = (props: BuildItemPro
     key="waiting"
   }
 
-
-  return <Status
+  return <div key={props.build.id} className="bolt-table-row">
+      <Status
         {...statuses}
         key={key}
         size={StatusSize.m}
         className="status-example flex-self-center "
       />
+      
+    </div>
 }

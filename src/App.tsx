@@ -9,17 +9,19 @@ import {
   SplitterElementPosition,
   Splitter
 } from "azure-devops-ui/Splitter";
-import {SdkContext, SDK} from './SdkContext';
+import {ProjectContext, Project} from './context/ProjectContext';
+import { Page } from "azure-devops-ui/Page";
 import { ObservableValue } from 'azure-devops-ui/Core/Observable';
 import { BuildFolders } from "./components/BuildFolders";
 
 export const App: FunctionComponent = () => {
     const collapsedValue = new ObservableValue(false);
     const [collapsed, setCollapsed] = useState(false);
-    const [sdk, setSdk] = useState(SDK);
+    const [project, setProject] = useState(Project);
+
 
     useEffect(() => {
-      setSdk(SDK);
+      setProject(Project);
     }, [])
 
     useEffect(() => {
@@ -28,14 +30,20 @@ export const App: FunctionComponent = () => {
 
     const containerStyle = { height: "500px", width: "600px", display: "flex" };
 
-    const _renderNearContent = () => (<BuildFolders/>)
+    const _renderNearContent = () => (
+      <Page className="release-hub-left flex-column">
+        <BuildFolders/>
+      </Page>
+    )
     const _renderFarContent = () => (
-      <div>Teste</div>
+      <Page className="release-hub-left flex-column">
+        Content
+      </Page>
     )
 
     return (
         <div style={containerStyle}>
-            <SdkContext.Provider value={sdk}>
+            <ProjectContext.Provider value={project}>
             <Splitter
                 collapsed={collapsed}
                 fixedElement={SplitterElementPosition.Near}
@@ -48,7 +56,7 @@ export const App: FunctionComponent = () => {
                 onRenderNearElement={_renderNearContent}
                 onRenderFarElement={_renderFarContent}
             />
-            </SdkContext.Provider>
+            </ProjectContext.Provider>
         </div>
     )
 }
