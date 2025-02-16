@@ -10,7 +10,7 @@ import {
   SplitterElementPosition,
   Splitter
 } from "azure-devops-ui/Splitter";
-import {SdkContext} from './context/SdkContext.mok';
+import { SdkContext } from './api';
 import { Page } from "azure-devops-ui/Page";
 import { ObservableValue } from 'azure-devops-ui/Core/Observable';
 import { WrapBuildTree } from "./components/WrapBuildTree";

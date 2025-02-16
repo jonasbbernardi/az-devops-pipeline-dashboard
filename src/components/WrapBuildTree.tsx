@@ -4,7 +4,7 @@ import {
   useState, useEffect
 } from "react";
 import { BuildTree } from "./BuildTree";
-import { listBuilds, listFolders } from "../api/build.mok";
+import { listBuilds, listFolders } from "../api";
 
 export const WrapBuildTree: FunctionComponent = () => {
   const [builds, setBuilds] = useState([]);
