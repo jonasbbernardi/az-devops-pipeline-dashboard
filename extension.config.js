@@ -39,6 +39,21 @@ module.exports = (env) => {
         path: "dist/main.css",
         addressable: true,
         contentType: "text/css"
+      },
+      {
+        path: "dist/fonts/AzDevMDL2.woff",
+        addressable: true,
+        contentType: "font/woff"
+      },
+      {
+        path: "dist/fonts/fluent-filled-v1.1.201.woff2",
+        addressable: true,
+        contentType: "font/woff2"
+      },
+      {
+        path: "dist/fonts/fluent-regular-v1.1.201.woff2",
+        addressable: true,
+        contentType: "font/woff2"
       }
     ],
     repository: {

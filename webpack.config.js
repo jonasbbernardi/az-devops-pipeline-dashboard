@@ -25,10 +25,14 @@ const config = {
           test: /\.scss$/,
           use: ["style-loader","css-loader","sass-loader"]
       },
-      // {
-      //   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-      //   use: 'file-loader'
-      // }
+      
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[name][ext]",
+        },
+      },
     ]
   },
   ignoreWarnings: [

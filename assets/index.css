@@ -8,7 +8,7 @@ body {
 */
 @font-face {
     font-family: 'FabricMDL2Icons';
-    src: url('assets/fabric-icons-782de987.woff') format('woff');
+    src: url('fonts/fabric-icons.woff') format('woff');
   }
   
   .ms-Icon {
