@@ -12,6 +12,7 @@ export interface IBuildItem extends ISimpleTableCell {
 
 export function provideBuildList(builds: BuildDefinitionReference[]) {
     const items: Array<ITreeItem<IBuildItem>> = [];
+    if(builds === undefined) return items;
     for (const build of builds) {
       items.push({
         id: build.path + build.name,

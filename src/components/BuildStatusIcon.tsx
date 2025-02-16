@@ -4,8 +4,8 @@ import { BuildDefinitionReference, BuildResult, BuildStatus } from "azure-devops
 import { IStatusProps, Status, Statuses, StatusSize } from "azure-devops-ui/Status";
 
 interface BuildStatusIconProps {
-    status: BuildStatus,
-    result: BuildResult
+  status: BuildStatus,
+  result: BuildResult
 }
 
 export const BuildStatusIcon: FunctionComponent<BuildStatusIconProps> = (props: BuildStatusIconProps) => {
@@ -42,10 +42,15 @@ export const BuildStatusIcon: FunctionComponent<BuildStatusIconProps> = (props: 
     key="waiting"
   }
 
+  if(props.status == BuildStatus.None) {
+    statuses = Statuses.Queued;
+    key="no-runs"
+  }
+
   return <Status
             {...statuses}
             key={key}
             size={StatusSize.m}
-            className="status-example flex-self-center "
+            className="icon-margin flex-self-center"
           />
 }

@@ -1,8 +1,7 @@
 import { Folder } from "azure-devops-extension-api/Build";
 import { ISimpleListCell } from "azure-devops-ui/List";
 import { ISimpleTableCell } from "azure-devops-ui/Table";
-import { ITreeItem, TreeItemProvider } from "azure-devops-ui/Utilities/TreeItemProvider";
-import { listFolders } from "../api/build.mok";
+import { ITreeItem } from "azure-devops-ui/Utilities/TreeItemProvider";
 
 export interface IFolderItem extends ISimpleTableCell {
     path: string;
@@ -11,6 +10,7 @@ export interface IFolderItem extends ISimpleTableCell {
 
 export function provideFolderList(folders: Folder[]) {
     const items: Array<ITreeItem<IFolderItem>> = [];
+    if(folders === undefined) return items;
     for (const folder of folders) {
       const folderName = folder.path.slice(1);
       items.push({

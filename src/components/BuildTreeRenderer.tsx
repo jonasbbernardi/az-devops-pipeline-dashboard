@@ -2,9 +2,7 @@ import * as React from 'react';
 import { ISimpleTableCell, SimpleTableCell } from "azure-devops-ui/Table";
 import { ITreeColumn, renderExpandableTreeCell } from "azure-devops-ui/TreeEx";
 import { ITreeItemEx } from "azure-devops-ui/Utilities/TreeItemProvider";
-import { BuildStatusIcon } from './BuildTree/BuildStatusIcon';
-import { BuildDefinitionReference } from 'azure-devops-extension-api/Build';
-import { IBuildItem } from './BuildProvider';
+import { BuildStatusIcon } from './BuildStatusIcon';
 
 export default function renderBuildTreeItem<T extends ISimpleTableCell>(
   rowIndex: number,
