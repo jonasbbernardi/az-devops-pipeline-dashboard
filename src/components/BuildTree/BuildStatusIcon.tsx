@@ -3,18 +3,19 @@ import { FunctionComponent } from "react"
 import { BuildDefinitionReference, BuildResult, BuildStatus } from "azure-devops-extension-api/Build"
 import { IStatusProps, Status, Statuses, StatusSize } from "azure-devops-ui/Status";
 
-interface BuildItemProps {
-    build: BuildDefinitionReference
+interface BuildStatusIconProps {
+    status: BuildStatus,
+    result: BuildResult
 }
 
-export const BuildItem: FunctionComponent<BuildItemProps> = (props: BuildItemProps) => {
+export const BuildStatusIcon: FunctionComponent<BuildStatusIconProps> = (props: BuildStatusIconProps) => {
   let statuses: IStatusProps = Statuses.Queued;
   let key: string = "queued";
-  const buildStatus = props.build.latestBuild.status;
+  const buildStatus = props.status;
 
   if(buildStatus == BuildStatus.Completed) {
 
-    const buildResult = props.build.latestBuild.result;
+    const buildResult = props.result;
 
     if(buildResult == BuildResult.Succeeded) {
       statuses = Statuses.Success;
@@ -31,23 +32,20 @@ export const BuildItem: FunctionComponent<BuildItemProps> = (props: BuildItemPro
     }
   }
 
-  if(props.build.latestBuild.status == BuildStatus.InProgress) {
+  if(props.status == BuildStatus.InProgress) {
     statuses = Statuses.Running;
     key="running"
   }
 
-  if(props.build.latestBuild.status == BuildStatus.NotStarted) {
+  if(props.status == BuildStatus.NotStarted) {
     statuses = Statuses.Waiting;
     key="waiting"
   }
 
-  return <div key={props.build.id} className="bolt-table-row">
-      <Status
-        {...statuses}
-        key={key}
-        size={StatusSize.m}
-        className="status-example flex-self-center "
-      />
-      
-    </div>
+  return <Status
+            {...statuses}
+            key={key}
+            size={StatusSize.m}
+            className="status-example flex-self-center "
+          />
 }

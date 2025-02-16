@@ -22,11 +22,18 @@ const config = {
         ]
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        use: 'file-loader'
-      }
+          test: /\.scss$/,
+          use: ["style-loader","css-loader","sass-loader"]
+      },
+      // {
+      //   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      //   use: 'file-loader'
+      // }
     ]
   },
+  ignoreWarnings: [
+    {module: /node_modules\/sass-loader/}
+  ],
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html'

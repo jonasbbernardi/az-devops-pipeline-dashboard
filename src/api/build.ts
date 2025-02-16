@@ -46,7 +46,7 @@ export const listFolders = async (
     return folders.filter((folder: Folder) => {
       if(folder.path == path) return false;
       return folder.path.split(path).length == 2;
-    });;
+    });
   } catch (error) {
       console.error("Erro ao listar as pastas:", error);
   }

@@ -3,6 +3,18 @@
 
 Dashboard for Azure DevOps Pipelines.
 
+# Setup
+
+```bash
+# First time setup for any DevOps extension project
+npm i azure-devops-extension-api azure-devops-extension-sdk azure-devops-ui
+npm i file-loader mini-css-extract-plugin
+npm i react@16 react-dom@16
+npm i --save-dev @types/react @types/react-dom
+npm i --save-dev css-loader html-webpack-plugin style-loader ts-loader typescript
+npm i --save-dev webpack webpack-cli webpack-dev-server
+```
+
 # Run
 
 ```bash

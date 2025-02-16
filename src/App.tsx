@@ -10,10 +10,11 @@ import {
   SplitterElementPosition,
   Splitter
 } from "azure-devops-ui/Splitter";
-import {SdkContext} from './context/SdkContext';
+import {SdkContext} from './context/SdkContext.mok';
 import { Page } from "azure-devops-ui/Page";
 import { ObservableValue } from 'azure-devops-ui/Core/Observable';
-import { BuildFolders } from "./components/BuildFolders";
+import { WrapBuildTree } from "./components/WrapBuildTree";
+import "./App.scss"
 
 export const App: FunctionComponent = () => {
     const collapsedValue = new ObservableValue(false);
@@ -24,11 +25,11 @@ export const App: FunctionComponent = () => {
       collapsedValue.value = collapsed;
     }, [collapsed]);
 
-    const containerStyle = { height: "500px", width: "600px", display: "flex" };
+    const containerStyle = { height: "100vh", width: "100vw", display: "flex" };
 
     const _renderNearContent = () => (
         <Page className="release-hub-left flex-column">
-          <BuildFolders/>
+          <WrapBuildTree/>
         </Page>
       )
     const _renderFarContent = () => (
@@ -36,22 +37,23 @@ export const App: FunctionComponent = () => {
           Content
         </Page>
       )
+    
+    const splitterProps = {
+      fixedElement: SplitterElementPosition.Near,
+      splitterDirection: SplitterDirection.Vertical,
+      initialFixedSize: 300,
+      minFixedSize: 100,
+      nearElementClassName: "v-scroll-auto custom-scrollbar",
+      farElementClassName: "v-scroll-auto custom-scrollbar",
+      onCollapsedChanged: (collapsed) => (setCollapsed(collapsed)),
+      onRenderNearElement: _renderNearContent,
+      onRenderFarElement: _renderFarContent
+    }
 
     return (
         <div style={containerStyle}>
             <SdkContext.Provider value={sdk}>
-              <Splitter
-                  collapsed={collapsed}
-                  fixedElement={SplitterElementPosition.Near}
-                  splitterDirection={SplitterDirection.Vertical}
-                  initialFixedSize={300}
-                  minFixedSize={100}
-                  nearElementClassName="v-scroll-auto custom-scrollbar"
-                  farElementClassName="v-scroll-auto custom-scrollbar"
-                  onCollapsedChanged={collapsed => (setCollapsed(collapsed))}
-                  onRenderNearElement={_renderNearContent}
-                  onRenderFarElement={_renderFarContent}
-              />
+              <Splitter collapsed={collapsed} {...splitterProps} />
             </SdkContext.Provider>
         </div>
     )

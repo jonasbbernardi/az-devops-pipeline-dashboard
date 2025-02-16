@@ -14,7 +14,7 @@
     "az-devops-pipeline-dashboard": "file:",
     "azure-devops-extension-api": "^4.246.0",
     "azure-devops-extension-sdk": "^4.0.2",
-    "azure-devops-ui": "^2.246.0",
+    "azure-devops-ui": "^2.250.0",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.9.2",
     "react": "^16.14.0",
@@ -25,11 +25,13 @@
     "@types/react-dom": "~16.8.0",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "sass": "^1.84.0",
+    "sass-loader": "^16.0.4",
     "style-loader": "^4.0.0",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.7.2",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
     "webpack": "^5.97.1",
-    "webpack-cli": "^5.1.4",
+    "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
   }
 }
