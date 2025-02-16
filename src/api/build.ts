@@ -1,5 +1,5 @@
 import { getClient } from "azure-devops-extension-api";
-import { BuildRestClient, Folder } from "azure-devops-extension-api/Build";
+import { Build, BuildRestClient, BuildStatus, Folder } from "azure-devops-extension-api/Build";
 import { CommonServiceIds, IProjectPageService } from "azure-devops-extension-api";
 import * as SDK from "azure-devops-extension-sdk";
 
@@ -24,11 +24,16 @@ export const listBuilds = async (
     );
     const builds = await Promise.all(
       definitions.map(async d => {
-        const latestBuild = await buildClient.getLatestBuild(project.id, `${d.id}`);
+        let latestBuild: Build;
+        try{
+          latestBuild = await buildClient.getLatestBuild(project.id, `${d.id}`);
+        } catch (error) {
+          console.error(error);
+          latestBuild = {status: BuildStatus.None} as Build;
+        }
         return { ...d, latestBuild };
       })
     );
-    console.log(builds);
     return builds;
   } catch (error) {
       console.error("Erro ao listar as builds:", error);
@@ -42,7 +47,6 @@ export const listFolders = async (
     const project = await getProject();
     const buildClient = getClient(BuildRestClient);
     const folders = await buildClient.getFolders(project.id,path);
-    console.log(folders);
     return folders.filter((folder: Folder) => {
       if(folder.path == path) return false;
       return folder.path.split(path).length == 2;
