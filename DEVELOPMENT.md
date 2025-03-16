@@ -44,6 +44,9 @@ Github:
 Extension manifest:
 <https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest>
 
+Fabric Icons:
+<https://uifabricicons.azurewebsites.net/>
+
 Javascript api documentation:
 <https://learn.microsoft.com/en-us/javascript/api/azure-devops-extension-api>
 
