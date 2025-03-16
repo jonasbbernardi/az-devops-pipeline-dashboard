@@ -7,9 +7,9 @@ import {
   ITreeItemEx,
   TreeItemProvider
 } from "azure-devops-ui/Utilities/TreeItemProvider";
-import { IFolderItem, provideFolderList } from './FoldersProvider'; 
+import { IFolderItem, provideFolderList } from './providers/FoldersProvider'; 
 import renderBuildTreeItem from './BuildTreeRenderer';
-import { IBuildItem, provideBuildList } from './BuildProvider';
+import { IBuildItem, provideBuildList } from './providers/BuildProvider';
 
 interface BuildTreeProps {
     folders: Folder[]
